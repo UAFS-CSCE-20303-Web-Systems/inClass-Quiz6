@@ -16,33 +16,8 @@ function getCourses(callback) {
   });
 }
 
-function addCourse(courseData,callback) {
-  const sql = "INSERT INTO courses(courseNo,courseTitle,creditHrs,semester) VALUES(?,?,?,?)";
-  pool.execute(sql,courseData,function (err, results) {
-    if (err) return callback(err, null);
-    callback(null, results);
-  });
-}
 
-function deleteCourse(courseData, callback) {
-  const sql = "DELETE FROM courses WHERE courseID = ?";
-  pool.execute(sql, courseData, function (err, results) {
-    if (err) return callback(err, null);
-    callback(null, results);
-  });
-}
-
-function searchCourses(field, values, callback) {
-  const sql = "SELECT * FROM courses where " + field + " like ?";
-  pool.execute(sql, values, function (err, results) {
-    if (err) return callback(err, null);
-    callback(null, results);
-  });
-}
 
 module.exports = {
-  getCourses,
-  addCourse,
-  deleteCourse,
-  searchCourses,
+  getCourses
 };
